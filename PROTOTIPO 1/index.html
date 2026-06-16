@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UniFound - alterando</title><!-- Tarefa HTML 1: altere o título da aba aqui -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ====================================================
+  GUSTAVO — ID 1: Registro de Usuário | ID 2: Login
+  Tela de autenticação com formulários de entrar e criar conta.
+===================================================== -->
+<div id="authScreen">
+
+  <!-- Painel lateral esquerdo com apresentação do app -->
+  <div class="auth-banner" aria-hidden="true">
+    <div class="auth-banner-logo">
+      <div class="auth-banner-icon">&#128269;</div>
+      <div style="font-family:var(--font-title);font-weight:800;font-size:1.8rem;">Uni<span style="opacity:0.75">Found</span></div>
+    </div>
+    <p class="auth-banner-tagline">
+      Plataforma universitária para registro e consulta de objetos perdidos no campus.
+    </p>
+    <!-- Lista de funcionalidades (Tarefa HTML 4: adicione um novo item <li> aqui) -->
+    <ul class="auth-features">
+      <li class="auth-feature">
+        <div class="auth-feature-icon">&#128196;</div>
+        <span>Registre itens perdidos com detalhes completos</span>
+      </li>
+      <li class="auth-feature">
+        <div class="auth-feature-icon">&#128269;</div>
+        <span>Pesquise e filtre por categoria ou local</span>
+      </li>
+      <li class="auth-feature">
+        <div class="auth-feature-icon">&#128100;</div>
+        <span>Entre em contato diretamente com o dono</span>
+      </li>
+      <li class="auth-feature">
+        <div class="auth-feature-icon">&#127381;</div>
+        <span>Marque como encontrado quando recuperar</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Painel direito: formulários de login e cadastro -->
+  <div class="auth-panel">
+    <div class="auth-panel-header">
+      <div class="auth-panel-title" id="authPanelTitle">Bem-vindo de volta</div>
+      <div class="auth-panel-sub" id="authPanelSub">Acesse sua conta para continuar</div>
+    </div>
+
+    <!-- Abas: alterna entre Entrar e Criar conta -->
+    <div class="auth-tabs" role="tablist">
+      <button class="auth-tab active" id="tabLogin" role="tab" aria-selected="true" aria-controls="formLogin">Entrar</button>
+      <button class="auth-tab" id="tabCadastro" role="tab" aria-selected="false" aria-controls="formCadastro">Criar conta</button>
+    </div>
+
+    <!-- Formulário de Login (ID 2) -->
+    <form class="auth-form active" id="formLogin" novalidate>
+      <div class="auth-group">
+        <label class="auth-label" for="loginEmail">E-mail</label>
+        <input class="auth-input" type="email" id="loginEmail" placeholder="seu@email.com" autocomplete="email" />
+      </div>
+      <div class="auth-group">
+        <label class="auth-label" for="loginSenha">Senha</label>
+        <div class="password-wrapper">
+          <input class="auth-input" type="password" id="loginSenha" placeholder="••••••••" autocomplete="current-password" />
+          <button type="button" class="toggle-pass" data-target="loginSenha">&#128065;</button>
+        </div>
+      </div>
+      <div class="auth-error" id="loginError"></div>
+      <!-- Botão de entrar (Tarefa HTML 6: altere o texto deste botão) -->
+      <button type="submit" class="auth-btn">Entrar</button>
+      <div class="auth-switch">Não tem conta? <button type="button" id="switchToCadastro">Criar conta</button></div>
+    </form>
+
+    <!-- Formulário de Cadastro (ID 1) -->
+    <form class="auth-form" id="formCadastro" novalidate>
+      <div class="auth-group">
+        <label class="auth-label" for="cadNome">Nome completo</label>
+        <input class="auth-input" type="text" id="cadNome" placeholder="João da Silva" autocomplete="name" />
+      </div>
+      <div class="auth-group">
+        <label class="auth-label" for="cadEmail">E-mail</label>
+        <input class="auth-input" type="email" id="cadEmail" placeholder="seu@email.com" autocomplete="email" />
+      </div>
+      <div class="auth-group">
+        <label class="auth-label" for="cadSenha">Senha</label>
+        <div class="password-wrapper">
+          <input class="auth-input" type="password" id="cadSenha" placeholder="Mínimo 6 caracteres" autocomplete="new-password" />
+          <button type="button" class="toggle-pass" data-target="cadSenha">&#128065;</button>
+        </div>
+      </div>
+      <div class="auth-group">
+        <label class="auth-label" for="cadSenhaConf">Confirmar senha</label>
+        <div class="password-wrapper">
+          <input class="auth-input" type="password" id="cadSenhaConf" placeholder="Repita a senha" autocomplete="new-password" />
+          <button type="button" class="toggle-pass" data-target="cadSenhaConf">&#128065;</button>
+        </div>
+      </div>
+      <div class="auth-error" id="cadError"></div>
+      <button type="submit" class="auth-btn">Criar conta</button>
+      <div class="auth-switch">Já tem conta? <button type="button" id="switchToLogin">Entrar</button></div>
+    </form>
+  </div>
+
+</div><!-- /authScreen -->
+
+<!-- ====================================================
+  APP PRINCIPAL — visível após o login
+===================================================== -->
+<div id="appWrapper">
+
+  <!-- ================================================
+    FELIPE — ID 8: Busca por título
+    Barra de navegação com logo, campo de busca e botão de registrar.
+  ================================================= -->
+  <header>
+    <div class="header-inner">
+
+      <!-- Logo do projeto -->
+      <div class="logo">
+        <div class="logo-icon">&#128269;</div>
+        <div class="logo-text">Uni<span>Found</span>
+        </div>
+      </div>
+
+      <!-- Campo de busca por nome ou local (ID 8) -->
+      <div class="header-search">
+        <span class="search-icon">&#128269;</span>
+        <input type="text" id="inputBusca" placeholder="Buscar por nome ou local..." aria-label="Buscar itens" />
+      </div>
+
+      <div class="header-right">
+        <!-- Botão principal (Tarefa HTML 6: altere o texto; Tarefa CSS 3: mude a cor no style.css em .btn-primary) -->
+        <button class="btn-primary" id="btnAbrirForm" aria-label="Registrar perda">
+          <span>+</span> Registrar perda
+        </button>
+
+        <!-- Menu do usuário logado -->
+        <div class="user-menu">
+          <button class="user-btn" id="userMenuBtn" aria-haspopup="true" aria-expanded="false">
+            <div class="user-avatar" id="headerAvatar"></div>
+            <span class="user-name" id="headerName"></span>
+            <span class="user-chevron">&#9660;</span>
+          </button>
+          <div class="user-dropdown" id="userDropdown" role="menu">
+            <div class="dropdown-header">
+              <div class="dropdown-name" id="dropdownName"></div>
+              <div class="dropdown-email" id="dropdownEmail"></div>
+            </div>
+            <button class="dropdown-item danger" id="btnLogout" role="menuitem">&#x21B6; Sair da conta</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================================================
+    VICTOR — ID 9: Contador de itens
+    Barra de resumo com totais de itens perdidos e encontrados.
+  ================================================= -->
+  <div class="summary-bar" role="status" aria-live="polite">
+    <div class="summary-inner">
+      <span class="summary-label">Resumo</span>
+      <div class="summary-stats">
+        <div class="stat">
+          <span class="stat-number" id="totalCount">0</span>
+          <span class="stat-desc">Total</span>
+        </div>
+        <div class="stat">
+          <span class="stat-dot lost"></span>
+          <span class="stat-number" id="perdidosCount">0</span>
+          <span class="stat-desc">Perdidos</span>
+        </div>
+        <div class="stat">
+          <span class="stat-dot found"></span>
+          <span class="stat-number" id="encontradosCount">0</span>
+          <span class="stat-desc">Encontrados</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="layout">
+
+    <!-- ==============================================
+      HIGOR — ID 7: Filtro por categoria
+      Painel lateral com filtros de categoria e ordenação.
+    =============================================== -->
+    <aside aria-label="Filtros">
+
+      <!-- Filtro de categorias (gerado pelo JavaScript) -->
+      <div class="sidebar-section">
+        <div class="sidebar-title">Categorias</div>
+        <div class="filter-pills" id="filterPills" role="group" aria-label="Filtrar por categoria"></div>
+      </div>
+
+      <!-- Ordenação do feed -->
+      <div class="sidebar-section">
+        <div class="sidebar-title">Ordenar por</div>
+        <select class="sort-select" id="sortSelect" aria-label="Ordenar feed">
+          <option value="recente">Mais recente</option>
+          <option value="antigo">Mais antigo</option>
+          <option value="az">A &rarr; Z</option>
+          <option value="za">Z &rarr; A</option>
+        </select>
+      </div>
+
+      <!-- Dicas de uso (Tarefa HTML 4: adicione um <li> nesta lista) -->
+      <div class="sidebar-section">
+        <div class="sidebar-title">Dicas</div>
+        <ul class="dicas-list">
+          <li>Registre o item logo que perceber a perda</li>
+          <li>Descreva detalhes para facilitar o reconhecimento</li>
+          <li>Verifique o feed com frequência</li>
+        </ul>
+      </div>
+
+    </aside>
+
+    <!-- ==============================================
+      VICTOR — ID 6: Feed de itens
+      Área principal com a grade de cards de itens perdidos.
+    =============================================== -->
+    <main>
+      <div class="feed-header">
+        <!-- Título principal do feed (Tarefa HTML 1 e CSS 1: veja .feed-title no style.css) -->
+        <h1 class="feed-title">Feed de Itens</h1>
+        <span class="feed-count" id="feedCount"></span>
+      </div>
+      <!-- Grade de cards — gerada automaticamente pelo JavaScript -->
+      <div class="feed-grid" id="feedGrid" role="list" aria-label="Feed de itens perdidos"></div>
+    </main>
+
+  </div><!-- /layout -->
+
+  <!-- ================================================
+    FELIPE — ID 10: Detalhes do item
+    Modal com informações completas de um item selecionado.
+  ================================================= -->
+  <div class="modal-overlay" id="modalDetalhes" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal" id="modalConteudo">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modalTitle"></h2>
+        <button class="modal-close" id="btnFecharModal" aria-label="Fechar modal">&#x2715;</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-status" id="modalStatus"></div>
+        <div class="modal-details" id="modalDetails"></div>
+        <div class="modal-divider"></div>
+        <!-- ============================================
+          VITOR — ID 4: Marcar como encontrado | ID 5: Excluir item
+          Botões de ação gerados pelo JavaScript conforme o item.
+        ============================================= -->
+        <div class="modal-actions" id="modalActions"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================
+    HIGOR — ID 3: Cadastrar item perdido
+    Modal com formulário para publicar um novo item perdido.
+  ================================================= -->
+  <div class="modal-overlay" id="modalForm" role="dialog" aria-modal="true" aria-labelledby="formTitle">
+    <div class="modal form-modal">
+      <div class="modal-header">
+        <h2 class="modal-title" id="formTitle">Registrar Item Perdido</h2>
+        <button class="modal-close" id="btnFecharForm" aria-label="Fechar formulário">&#x2715;</button>
+      </div>
+      <div class="modal-body">
+        <form id="formItem" novalidate>
+          <div class="form-grid">
+            <div class="form-group full">
+              <label for="fNome">Nome do item <span class="req">*</span></label>
+              <input class="form-control" type="text" id="fNome" placeholder="Ex: Carteira preta com iniciais" required />
+            </div>
+            <div class="form-group">
+              <label for="fCategoria">Categoria <span class="req">*</span></label>
+              <!-- Tarefa HTML 4: adicione um novo <option> nesta lista -->
+              <select class="form-control" id="fCategoria" required>
+                <option value="">Selecionar...</option>
+                <option>Chave</option>
+                <option>Carteira</option>
+                <option>Celular</option>
+                <option>Documento</option>
+                <option>Eletrônico</option>
+                <option>Roupa</option>
+                <option>Mochila/Bolsa</option>
+                <option>Outro</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="fData">Data da perda <span class="req">*</span></label>
+              <input class="form-control" type="date" id="fData" required />
+            </div>
+            <div class="form-group full">
+              <label for="fLocal">Local onde foi perdido <span class="req">*</span></label>
+              <input class="form-control" type="text" id="fLocal" placeholder="Ex: Bloco B — Sala 204" required />
+            </div>
+            <div class="form-group full">
+              <label for="fContato">Contato (nome + e-mail ou telefone) <span class="req">*</span></label>
+              <input class="form-control" type="text" id="fContato" placeholder="Ex: João Silva — joao@email.com" required />
+              <span class="form-hint">Será exibido publicamente para facilitar o contato.</span>
+            </div>
+          </div>
+          <button type="submit" class="btn-submit" style="margin-top: 20px;">Publicar no feed</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /appWrapper -->
+
+<!-- ====================================================
+  Rodapé da página (Tarefa HTML 9 e 10)
+===================================================== -->
+<footer>
+  <p>UniFound — Sistema de Achados e Perdidos — PUC Paraná &copy; 2026</p>
+  <!-- Tarefa HTML 8: adicione um link externo aqui -->
+</footer>
+
+<!-- Notificações flutuantes (toast) -->
+<div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
